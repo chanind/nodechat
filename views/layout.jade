@@ -2,5 +2,8 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    != css('application')
+  body
+    != body
+    script(src='/socket.io/socket.io.js', type='text/javascript')
+    != js('application')

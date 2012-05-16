@@ -9,6 +9,9 @@ mongoose = require('mongoose')
 
 db = mongoose.connect('mongodb://localhost/nodechat')
 
+
+#Comment = require('./models/comment')
+
 app = module.exports = express.createServer()
 
 # Configuration
@@ -18,8 +21,9 @@ app.configure ->
   app.set('view engine', 'jade')
   app.use(express.bodyParser())
   app.use(express.logger())
+  app.use(require('connect-assets')())
   app.use(express.methodOverride())
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }))
+  #app.use(require('stylus').middleware({ src: __dirname + '/public' }))
   app.use(app.router)
   app.use(express.static(__dirname + '/public'))
 
