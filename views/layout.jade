@@ -4,6 +4,11 @@ html
     title= title
     != css('application')
   body
-    != body
+    .main-content
+      .container
+        h1(class='title') Node Chat Demo
+        != body
+    .footer
+      .container Node Chat Demo
     script(src='/socket.io/socket.io.js', type='text/javascript')
     != js('application')
