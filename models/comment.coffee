@@ -1,8 +1,7 @@
-mongoose = require('mongoose')
+Schema = require('mongoose').Schema
 
-Comment = mongoose.model 'Comment',
+Comment = new Schema
   author: {type: String, match: /^[a-zA-Z0-9_]+$/}
   content: String
-  
-  
-exports.Comment (db) -> db.model('Comment')
+
+exports.Comment = Comment

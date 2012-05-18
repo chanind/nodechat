@@ -2,5 +2,9 @@
 //= require underscore-min
 //= require backbone-min
 //= require bootstrap.min
-//= require backbone.iobind.min
-//= require backbone.iosync.min
+//= require nodechat
+//= require_tree ./templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers

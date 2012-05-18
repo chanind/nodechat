@@ -7,6 +7,8 @@ express = require('express')
 routes = require('./routes')
 mongoose = require('mongoose')
 
+require('./models')
+
 db = mongoose.connect('mongodb://localhost/nodechat')
 
 
