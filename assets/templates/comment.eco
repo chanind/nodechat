@@ -1,4 +1,4 @@
 <li class="comment">
-  <span class="user"><%= @author %></span>
-  <span class="content"><%= @content %></span>
+  <span class="user"><%= @comment.author %></span>
+  <span class="content"><%= @comment.content %></span>
 </li>

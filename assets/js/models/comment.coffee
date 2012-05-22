@@ -1,0 +1,1 @@
+class Nodechat.Models.Comment extends Backbone.Model

@@ -4,7 +4,6 @@
 #
 
 express = require 'express'
-routes = require './routes'
 mongoose = require 'mongoose'
 eco = require 'eco'
 path = require 'path'
@@ -14,6 +13,8 @@ require './models'
 db = mongoose.connect('mongodb://localhost/nodechat')
 
 app = module.exports = express.createServer()
+
+io = require('socket.io').listen(app)
 
 # Configuration
 
@@ -38,7 +39,6 @@ app.configure ->
           """
   ))
   app.use(express.methodOverride())
-  #app.use(require('stylus').middleware({ src: __dirname + '/public' }))
   app.use(app.router)
   app.use(express.static(__dirname + '/public'))
 
@@ -52,7 +52,14 @@ app.configure 'production', ->
 
 # Routes
 
-app.get('/', routes.index)
+homeController = require './controllers/home'
+commentsController = require './controllers/comments'
+
+app.get('/', homeController.index)
+
+io.sockets.on 'connection', (socket) ->
+  socket.on 'comments:create', (data) -> commentsController.create(socket, data)
+  socket.on 'comments:read', (data) -> commentsController.read(socket, data)
 
 app.listen(3000)
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env)

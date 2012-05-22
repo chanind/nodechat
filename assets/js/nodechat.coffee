@@ -2,9 +2,11 @@ window.Nodechat =
   Models: {}
   Views: {}
   Routers: {}
-  Templates: {}
+  Collections: {}
   init: ->
     new Nodechat.Routers.ChatRouter()
     Backbone.history.start()
     
-$(document).ready -> Nodechat.init()
+$(document).ready -> 
+  Nodechat.init()
+  window.socket = io.connect('http://localhost:3000')
