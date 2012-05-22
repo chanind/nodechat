@@ -1,6 +1,10 @@
-//= require jquery-1.7.2.min
-//= require underscore-min
-//= require backbone-min
-//= require bootstrap.min
-//= require backbone.iobind.min
-//= require backbone.iosync.min
+window.Nodechat = 
+  Models: {}
+  Views: {}
+  Routers: {}
+  Templates: {}
+  init: ->
+    new Nodechat.Routers.ChatRouter()
+    Backbone.history.start()
+    
+$(document).ready -> Nodechat.init()

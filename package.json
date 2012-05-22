@@ -7,6 +7,7 @@
     , "stylus": ">= 0.0.1"
     , "bootstrap-stylus": ">= 0.0.1"
     , "socket.io": ">= 0.0.1"
+    , "eco": ">= 0.0.1"
     , "connect-assets": ">= 0.0.1"
     , "mongoose": ">= 0.0.1"
     , "jade": ">= 0.0.1"

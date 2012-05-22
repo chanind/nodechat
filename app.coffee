@@ -3,16 +3,15 @@
 # Module dependencies.
 #
 
-express = require('express')
-routes = require('./routes')
-mongoose = require('mongoose')
+express = require 'express'
+routes = require './routes'
+mongoose = require 'mongoose'
+eco = require 'eco'
+path = require 'path'
 
-require('./models')
+require './models'
 
 db = mongoose.connect('mongodb://localhost/nodechat')
-
-
-#Comment = require('./models/comment')
 
 app = module.exports = express.createServer()
 
@@ -23,7 +22,21 @@ app.configure ->
   app.set('view engine', 'jade')
   app.use(express.bodyParser())
   app.use(express.logger())
-  app.use(require('connect-assets')())
+  app.use(require('connect-assets')(
+    jsCompilers:
+      eco:
+        match: /\.eco$/
+        compileSync: (sourcePath, source) ->
+          fileName = path.basename sourcePath, '.eco'
+          directoryName = (path.dirname sourcePath).replace "#{__dirname}/assets/templates", ""
+          jstPath = if directoryName then "#{directoryName}/#{fileName}" else fileName
+          """
+          (function() {
+          this.JST || (this.JST = {});
+          this.JST['#{jstPath}'] = #{eco.precompile source}
+          }).call(this);
+          """
+  ))
   app.use(express.methodOverride())
   #app.use(require('stylus').middleware({ src: __dirname + '/public' }))
   app.use(app.router)
