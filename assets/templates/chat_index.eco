@@ -1,6 +1,8 @@
-<div class="chat-window" id="js-chat-window"></div>
+<div class="chat-window">
+  <ul id="js-messages"></ul>
+</div>
 <div class="user-list" id="js-user-list"></div>
-<form class="text-entry-form">
+<form class="text-entry-form" id="js-comment-form">
   <input class="chat-box" type="text" />
-  <a href="#" class="btn btn-inverse">Send</a>
+  <input type="submit" class="btn btn-inverse" value="Send" />
 </form>

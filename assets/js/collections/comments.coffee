@@ -5,5 +5,7 @@ class Nodechat.Collections.Comments extends Backbone.Collection
   model: Nodechat.Models.Comment
   
   initialize: ->
-    _.bindAll(this, 'serverCreate', 'collectionCleanup')
-    @ioBind('create', socket, @serverCreate, this)
+    @ioBind('create', window.socket, _.bind(@ioAddComment, this), this)
+  
+  ioAddComment: (comment) ->
+    @add(comment)

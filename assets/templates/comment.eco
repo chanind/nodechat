@@ -1,4 +1,2 @@
-<li class="comment">
-  <span class="user"><%= @comment.author %></span>
-  <span class="content"><%= @comment.content %></span>
-</li>
+<span class="user"><%= @comment.get('author') %></span>:
+<span class="content"><%= @comment.get('content') %></span>

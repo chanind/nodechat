@@ -7,10 +7,11 @@ exports.create = (socket, data, callback) ->
   comment.author = data.author
   comment.save (err) ->
     callback(err)
-    socket.emit('comments:create', data) unless err
+    socket.broadcast.emit('/comments:create', comment.toObject()) unless err
   
 exports.read = (socket, data, callback) ->
   Comment.find {}, (err, docs) ->
-    callback(err, docs)
+    docObjects = docs.map (doc) -> doc.toObject()
+    callback(err, docObjects)
       
   

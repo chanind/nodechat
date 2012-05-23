@@ -8,5 +8,5 @@ window.Nodechat =
     Backbone.history.start()
     
 $(document).ready -> 
-  Nodechat.init()
   window.socket = io.connect('http://localhost:3000')
+  Nodechat.init()

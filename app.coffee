@@ -58,8 +58,8 @@ commentsController = require './controllers/comments'
 app.get('/', homeController.index)
 
 io.sockets.on 'connection', (socket) ->
-  socket.on 'comments:create', (data) -> commentsController.create(socket, data)
-  socket.on 'comments:read', (data) -> commentsController.read(socket, data)
+  socket.on 'comments:create', (data, callback) -> commentsController.create(socket, data, callback)
+  socket.on 'comments:read', (data, callback) -> commentsController.read(socket, data, callback)
 
 app.listen(3000)
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env)
